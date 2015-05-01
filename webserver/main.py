@@ -90,6 +90,12 @@ def static10(filename):
     return static_file(filename,
                        root='/home/swannsg/development/nofw/css')
 
+@route('/home/swannsg/development/nofw/js/private/<filename>')
+def static11(filename):
+    print 'HELLO'
+    print 'static11'
+    return static_file(filename,
+                       root='/home/swannsg/development/nofw/js/private')
 
 
 run(reloader=True)    

@@ -62,7 +62,6 @@ function onExitField(event) {
 }
 // end events
 
-
 function financeFormat(targetID, inputKey, fieldValue) {
     console.log('financeFormat');
     //valid input
