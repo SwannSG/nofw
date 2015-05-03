@@ -57,8 +57,9 @@ p.v = (function () {
             // invalid field
             errorID = doErrorMsg(targetID);
             setTimeout(ASYN_clearErrorMsg, 2000);
-            return;
+            return false;
         }
+        return true;
 
         function ASYN_clearErrorMsg() {
             $(errorID).text('');
@@ -94,7 +95,7 @@ p.v = (function () {
             // invalid field
             errorID = doErrorMsg(targetID);
             setTimeout(ASYN_clearErrorMsg, 2000);
-            return;
+            return false;
         }
         var split = fieldValue.split('.');
         if (split.length == 2) {
@@ -109,6 +110,7 @@ p.v = (function () {
             // add decimal
             $(targetID).val(fieldValue + '.00');
         }
+        return true
 
         function ASYN_clearErrorMsg() {
             $(errorID).text('');
@@ -127,7 +129,7 @@ p.v = (function () {
             // invalid field
             errorID = doErrorMsg(targetID, 'error 1');
             setTimeout(ASYN_clearErrorMsg, 2000);
-            return;
+            return false;
         }
         else {
             // check date format
@@ -135,19 +137,19 @@ p.v = (function () {
             if ( !hasValue(reResult) ) {
                 errorID = doErrorMsg(targetID, 'error 2');
                 setTimeout(ASYN_clearErrorMsg, 2000);
-                return;
+                return false;
             }
             // check date is an actual real date in the calender
             day = reResult[1];
             month = reResult[2];
             year = reResult[3];
             if ( isValidDate(day, month, year)) {
-                return;
+                return true;
             }
             else {
                 errorID = doErrorMsg(targetID, 'error3');
                 setTimeout(ASYN_clearErrorMsg, 2000);
-                return;
+                return false;
             }
         }
 

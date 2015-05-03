@@ -86,15 +86,20 @@ p.e = (function () {
     }
 
 
-    function onFormSubmit(event, fields) {
+    function onFormSubmit(event, fieldIDs) {
         // event.preventDefault() MUST BE thee first line
         event.preventDefault();
         console.log('onFormSubmit');
         var targetID = '#' + event.target.id;
-        console.log(event);
-        console.log(fields);
-        var f1 = fields[0];
-        console.log($('#' + f1).val());
+        var formIsValid = p.f.isFormValid(fieldIDs);
+        if (formIsValid) {
+            // AJAX submit
+            p.f.createFormData(targetID, fieldIDs);
+        }
+        else {
+            // de we need to do anything
+        }
+
     }
 
 
