@@ -92,10 +92,14 @@ def static10(filename):
 
 @route('/home/swannsg/development/nofw/js/private/<filename>')
 def static11(filename):
-    print 'HELLO'
-    print 'static11'
     return static_file(filename,
                        root='/home/swannsg/development/nofw/js/private')
+
+@route('/home/swannsg/development/UAS/bower_components/jqueryui/<filename>')
+def static12(filename):
+    print filename
+    return static_file(filename,
+                       root='/home/swannsg/development/UAS/bower_components/jqueryui')
 
 
 run(reloader=True)    
