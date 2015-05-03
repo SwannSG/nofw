@@ -1,5 +1,5 @@
 <!--pattern = "\d{1,3}(,\d{3})*(\.\d\d)?|\.\d\d-->
-<form class="form-horizontal">
+<form class="form-horizontal" id="form01" method="#" onsubmit="p.e.onFormSubmit(event,['amount', 'date'])">
 
     <div class="form-group">
         <label for="amount" class="col-sm-2 control-label">Amount<em>*</em></label>
@@ -33,25 +33,35 @@
         <div class="col-sm-10">
             <input type="text"
                    id="person_who_paid"
-                   class="form-control mandatory"
+                   class="form-control must-have-text"
                    title="Person who settled the bill"
                    placeholder="Name of person who paid the entertainment bill"
                    errorMsg="Must be completed"
                    onblur="p.e.onExitField(event)" onkeyup="p.e.onKeyUp(event)">
+            <em id="person_who_paid-error"></em>
         </div>
     </div>
 
     <div class="form-group">
-        <label for="description" class="col-sm-2 control-label">Description</label>
+        <label for="description" class="col-sm-2 control-label">Description<em>*</em></label>
         <div class="col-sm-10">
-            <textarea class="form-control" id="description" rows="3" title="Brief description of the expense" required></textarea>
+            <textarea class="form-control must-have-text"
+                      id="description"
+                      rows="3"
+                      title="Brief description of the expense"
+                      errorMsg="Must be completed"
+                      onblur="p.e.onExitField(event)" onkeyup="p.e.onKeyUp(event)"></textarea>
+            <em id="description-error"></em>
         </div>
     </div>
 
     <div class="form-group">
         <label for="docref" class="col-sm-2 control-label">Document reference</label>
         <div class="col-sm-10">
-            <input type="text" class="form-control" id="docref" size="100" title="Document reference that can be tied back to original source document">
+            <input type="text"
+                   class="form-control"
+                   id="docref"
+                   title="Document reference that can be tied back to original source document">
         </div>
     </div>
 

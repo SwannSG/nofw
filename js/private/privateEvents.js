@@ -28,7 +28,8 @@ p.e = (function () {
     // made public
     return {
         onKeyUp:     onKeyUp,
-        onExitField: onExitField
+        onExitField: onExitField,
+        onFormSubmit:onFormSubmit
     };
 
     function noActionKey(reKeyCodes, lastKey) {
@@ -48,37 +49,56 @@ p.e = (function () {
             return;
         }
         var targetID = '#' + event.target.id;
-        // block certain event keys, left and right arrow
-        // add class selector here
+        var fieldValue = $(targetID).val();
+        var inputKey = fieldValue.slice(-1);
         if ( $(targetID).hasClass('finance-format') ){
             // finance-format
-            var fieldValue = $(targetID).val();
-            var inputKey = fieldValue.slice(-1);
             p.v.financeFormat(targetID, inputKey, fieldValue);
         }
         else if ( $(targetID).hasClass('fast-date') ) {
             // fast-date
-            var fieldValue = $(targetID).val();
-            var inputKey = fieldValue.slice(-1);
             p.v.fastDate(targetID, inputKey, fieldValue);
         }
+        //else if ( $(targetID).hasClass('must-have-text') ) {
+        //    // must have text in input text box
+        //    p.v.mustHaveText(targetID, inputKey, fieldValue);
+        //}
+        return;
     }
 
     function onExitField(event) {
         console.log('event: onExitField');
         var targetID = '#' + event.target.id;
+        var fieldValue = $(targetID).val();
         // add class selectors here
         if ( $(targetID).hasClass('finance-format') ){
             // finance-format
-            var fieldValue = $(targetID).val();
             p.v.onExitFinanceFormat(targetID, fieldValue);
         }
         else if ( $(targetID).hasClass('fast-date') ) {
             // fast-date
-            var fieldValue = $(targetID).val();
             p.v.onExitFastDate(targetID, fieldValue);
         }
+        else if ( $(targetID).hasClass('must-have-text') ) {
+            // must have text in input text box
+            p.v.onExitMustHaveText(targetID, fieldValue);
+        }
     }
+
+
+    function onFormSubmit(event, fields) {
+        // event.preventDefault() MUST BE thee first line
+        event.preventDefault();
+        console.log('onFormSubmit');
+        var targetID = '#' + event.target.id;
+        console.log(event);
+        console.log(fields);
+        var f1 = fields[0];
+        console.log($('#' + f1).val());
+    }
+
+
+
 
     //var keyname = {
     //    BACKSPACE: 8,

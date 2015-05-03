@@ -41,9 +41,29 @@ p.v = (function () {
         delLastKeystroke:    delLastKeystroke,
         zeroLengthField:     zeroLengthField,
         fastDate:            fastDate,
-        onExitFastDate:      onExitFastDate
+        onExitFastDate:      onExitFastDate,
+        mustHaveText:        mustHaveText,
+        onExitMustHaveText:  onExitMustHaveText
     };
 
+
+    function mustHaveText(targetID, inputKey, fieldValue) {
+        return;
+    }
+
+    function onExitMustHaveText(targetID, fieldValue) {
+        var errorID;
+        if (zeroLengthField(fieldValue)) {
+            // invalid field
+            errorID = doErrorMsg(targetID);
+            setTimeout(ASYN_clearErrorMsg, 2000);
+            return;
+        }
+
+        function ASYN_clearErrorMsg() {
+            $(errorID).text('');
+        }
+    }
 
     function financeFormat(targetID, inputKey, fieldValue) {
         //valid input
@@ -272,6 +292,7 @@ p.v = (function () {
     }
 
     function zeroLengthField(fieldValue) {
+        console.log('zeroLengthField')
         if (fieldValue.length == 0) {
             return true;
         }
@@ -310,7 +331,6 @@ p.v = (function () {
         day = parseInt(day);
         month = parseInt(month);
         year = parseInt(year);
-        console.log(day + ' : ' + month + ' : ' + year);
         var maxDays = 0;
         var daysInMonth = {
             1: 31,
