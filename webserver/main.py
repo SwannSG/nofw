@@ -1,6 +1,8 @@
 from bottle import route, run, static_file, debug, template, request, response
 from json import dumps
 
+def isValid(data):
+    return True
 
 
 @route('/index', method='GET')
@@ -27,6 +29,21 @@ def form01():
     for line in fp:
         result = result + line
     return dumps({'form':result})    
+
+@route('/v1.0/post/form', method='POST')
+def form02():
+    print 'form02 post to server'
+    data = request.json
+    if isValid(data):
+        rspMsg = {'rspMsg': 'Update successful',
+                  'rspOk': True}
+    else:
+        rspMsg = {'rspMsg': 'Form not correct with some detail',
+                  'rspOk': False}
+    print rspMsg
+    print 'end form02 post to server'
+    return dumps(rspMsg)    
+
 
 #--static components
 @route('/home/swannsg/development/UAS/bower_components/bootstrap/dist/css/<filename>')

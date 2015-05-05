@@ -29,8 +29,15 @@ p.e = (function () {
     return {
         onKeyUp:     onKeyUp,
         onExitField: onExitField,
-        onFormSubmit:onFormSubmit
+        onFormSubmit:onFormSubmit,
+        AJAXcall:   AJAXcall
     };
+
+
+    function AJAXcall() {
+        log('AJAXcall');
+        p.s.postForm({1:1});
+    }
 
     function noActionKey(reKeyCodes, lastKey) {
         // pass regular expression of key codes
@@ -91,14 +98,15 @@ p.e = (function () {
         event.preventDefault();
         console.log('onFormSubmit');
         var targetID = '#' + event.target.id;
-        var formIsValid = p.f.isFormValid(fieldIDs);
-        if (formIsValid) {
-            // AJAX submit
-            p.f.createFormData(targetID, fieldIDs);
-        }
-        else {
-            // de we need to do anything
-        }
+        p.f.doFormFlow(targetID, fieldIDs)
+        //var formIsValid = p.f.isFormValid(fieldIDs);
+        //if (formIsValid) {
+        //    // AJAX submit
+        //    p.f.createFormData(targetID, fieldIDs);
+        //}
+        //else {
+        //    // de we need to do anything
+        //}
 
     }
 

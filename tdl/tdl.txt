@@ -1,0 +1,33 @@
+START
+CATEGORY
+Expense | Entertainment
+DESCRIPTION
+Entertainment expense paid by company card
+NAVIGATION
+Entertainment paid by company card
+CAPTURE
+Amount | Amount of the bill including VAT but excluding tip | mandatory | finance | <errorMsg>
+Tip | Tip that was paid | mandatory | finance | <errorMsg>
+Date | Date expense incurred | mandatory | date | <errorMsg>
+Description | Brief description | mandatory | box | <errorMsg>
+Document No | Reference number to relate to paper source| optional | text | <errorMsg> 
+BACKEND
+END
+
+START
+CATEGORY
+Expense | Stationary
+DESCRIPTION
+Stationary expense paid by company card
+NAVIGATION
+Stationary paid by company card
+CAPTURE
+Amount | Amount of the stationary invoice including VAT| finance | <errorMsg>
+Date | Date expense incurred | * | date | <errorMsg>
+Description | Brief description | * | box | <errorMsg>
+Document No | Reference number to relate to invoice | text | <errorMsg> 
+BACKEND
+END
+
+.[0-9]{2}$
+ 

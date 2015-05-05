@@ -6,3 +6,7 @@
 
 // Global namespace is p, window.p
 var p = {} || p;
+
+function log(str) {
+    console.log(str);
+}

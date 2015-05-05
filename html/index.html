@@ -24,16 +24,21 @@
 <div class="container">
     <div class="row" style="border: 1px solid black; height:650px;">
         <div class="col-lg-3">
-            Left pane
+            <p>Left pane</p>
+            <a href="#" onclick="p.e.AJAXcall()">AJAX call</a>
             <div class="left-pane"></div>
         </div>
         <div class="col-lg-9">
-            <div class="row" style="border: 1px solid black; height:150px;">
+            <div class="row" style="border: 1px solid black; height:100px;">
                 Top pane
                 <p><a href="/index">Index</a></p>
                 <p><a href="javascript:p.s.getRest('/v1.0/menu/expense')" >Expense</a></p>
             </div>
-            <div class="row" style="border: 1px solid black; height:500px;">
+
+            <div class="row" style="border: 1px solid black; height:30px;">
+                <p id="top-msg" class="text-center"></p>
+            </div>
+            <div class="row" style="border: 1px solid black; height:520px;">
                 Center panel
                 <div id="center-pane"></div>
             </div>
@@ -57,6 +62,7 @@
 <script src="/home/swannsg/development/nofw/js/private/privateValidation.js"></script>
 <script src="/home/swannsg/development/nofw/js/private/privateServer.js"></script>
 <script src="/home/swannsg/development/nofw/js/private/privateForms.js"></script>
+<script src="/home/swannsg/development/nofw/js/private/privateASYN.js"></script>
 
 <!--<script src="/home/swannsg/development/nofw/js/library/validator.min.js"></script>-->
 <!--<script src="/home/swannsg/development/nofw/js/library/autoNumeric.js"></script>-->

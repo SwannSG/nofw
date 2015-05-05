@@ -6,8 +6,33 @@ p.f = (function () {
 
     return {
         isFormValid:    isFormValid,
-        createFormData: createFormData
+        createFormData: createFormData,
+        doFormFlow:     doFormFlow
     }
+
+
+    function ASYN_clearTopMsg() {
+        $('#top-msg').text('');
+    }
+
+
+    function doFormFlow(targetID, fieldIDs) {
+        log('doFormFlow');
+        var formData;
+        if ( isFormValid(fieldIDs) ) {
+            // form data is good
+            formData = createFormData(targetID, fieldIDs);
+            p.s.postForm(formData);
+        }
+        else {
+            // form data is bad
+            log('form data is bad');
+            $('#top-msg').css('color', 'red');
+            $('#top-msg').text('Please correct form and re-submit');
+            setTimeout(ASYN_clearTopMsg, 3000);
+        }
+    }
+
 
     function isFormValid(fieldIDs) {
         var formOks = new Array(fieldIDs.length);
@@ -32,8 +57,6 @@ p.f = (function () {
             }
             formOks[i] = formOk;
         }
-        console.log(formOks);
-        console.log(formOks.indexOf(false));
         if (formOks.indexOf(false) === -1) {
             return true;
         }
@@ -49,6 +72,6 @@ p.f = (function () {
             var fieldValue = $(targetID).val();
             formData[fieldIDs[i]] = fieldValue;
         }
-        console.log(formData);
+        return formData;
     }
 })();

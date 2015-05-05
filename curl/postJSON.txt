@@ -1,0 +1,5 @@
+curl --user admin:admin \
+ --header "Content-Type:application/json" \
+ --header "Accept: application/json" \
+ --request POST \
+ --data '{"short_description":"Test with CURL"}' \
