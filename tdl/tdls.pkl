@@ -1,0 +1,158 @@
+(dp0
+I1
+(ireadTDL
+tdl
+p1
+(dp2
+S'category'
+p3
+(lp4
+S'Expense'
+p5
+aS'Entertainment'
+p6
+asS'capture'
+p7
+(lp8
+(S'Amount'
+p9
+S'Amount of the bill including VAT but excluding tip'
+p10
+S'mandatory'
+p11
+S'finance'
+p12
+S'<errorMsg>'
+p13
+tp14
+a(S'Tip'
+p15
+S'Tip that was paid'
+p16
+S'mandatory'
+p17
+S'finance'
+p18
+S'<errorMsg>'
+p19
+tp20
+a(S'Date'
+p21
+S'Date expense incurred'
+p22
+S'mandatory'
+p23
+S'date'
+p24
+S'<errorMsg>'
+p25
+tp26
+a(S'Description'
+p27
+S'Brief description'
+p28
+S'mandatory'
+p29
+S'box'
+p30
+S'<errorMsg>'
+p31
+tp32
+a(S'Document No'
+p33
+S'Reference number to relate to paper source'
+p34
+S'optional'
+p35
+S'text'
+p36
+S'<errorMsg>'
+p37
+tp38
+asS'navigation'
+p39
+S'Entertainment paid by company card'
+p40
+sS'description'
+p41
+S'Entertainment expense paid by company card'
+p42
+sS'formID'
+p43
+I1
+sbsI2
+(ireadTDL
+tdl
+p44
+(dp45
+g3
+(lp46
+S'Expense'
+p47
+aS'Stationary'
+p48
+asg7
+(lp49
+(S'Amount'
+p50
+S'Amount of the stationary invoice including VAT'
+p51
+S'finance'
+p52
+S'<errorMsg>'
+p53
+tp54
+a(S'Date'
+p55
+S'Date expense incurred'
+p56
+S'*'
+p57
+S'date'
+p58
+S'<errorMsg>'
+p59
+tp60
+a(S'Description'
+p61
+S'Brief description'
+p62
+g57
+S'box'
+p63
+S'<errorMsg>'
+p64
+tp65
+a(S'Document No'
+p66
+S'Reference number to relate to invoice'
+p67
+S'text'
+p68
+S'<errorMsg>'
+p69
+tp70
+asg39
+S'Stationary paid by company card'
+p71
+sg41
+S'Stationary expense paid by company card'
+p72
+sg43
+I2
+sbsI3
+(ireadTDL
+tdl
+p73
+(dp74
+g3
+g46
+sg7
+g49
+sg39
+g71
+sg41
+g72
+sg43
+I3
+sbs.

@@ -30,16 +30,34 @@ def getDate(s):
 def isFinanceValue(s):
     # check finance-format string for correctness
     # need correct regex expression
-    m = re.match(r'^([0-9][0-9,]+.[0-9]{2})$',s)
+    # n,nnn,nnn.nn
+    m = re.match(r'^[1-9]{1}[0-9]{0,2}.[0-9]{2}$|^0.[0-9]{2}$|^[1-9]{1}(,[0-9]{3})+.[0-9]{2}$',s)
     if m:
         return True
     else:
-        False
+        return False
 
-    
+   
 def getFinanceValue(s):
-    # return foating point number from financial-format string 
+    # return foating point number from financial-format string
+    # s includes , and decimal point .
     s = s.replace(',', '')
     return float(s)
+
+def isMustHaveText(s):
+    if len(s.strip()) > 0:
+        return True
+    else:
+        return False
+
+
+#finTest = []
+#finTest.append('0.23')
+#finTest.append('01.23')
+#finTest.append('11.23')
+#finTest.append('1,01.23')
+#finTest.append('1,001.23')
+#finTest.append('1,000,001.23')
+
 
 

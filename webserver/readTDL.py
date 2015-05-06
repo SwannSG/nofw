@@ -1,8 +1,9 @@
 # read TDL text format and creat tdl object
+import pickle
 
 # collection of tdl objects
 tdls = {}
-print id(tdls) 
+ 
 
 def getNextFormID(d):
     keys = d.keys()
@@ -82,7 +83,10 @@ for line in fp:
                 capture)
         tdls[o.formID] = o
 
-
+fp.close()
+fp = open('/home/swannsg/development/nofw/tdl/tdls.pkl', 'wb')
+pickle.dump(tdls, fp)
+fp.close()
         
 
     
