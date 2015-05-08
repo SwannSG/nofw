@@ -1,5 +1,15 @@
+import pickle
 from bottle import route, run, static_file, debug, template, request, response
 from json import dumps
+import globalConfig
+import readTDL
+import isTdlValid
+import makeMenu
+
+dirPickle = globalConfig.dirPickle
+
+fp = open('%s/formMenus.pkl' % dirPickle, 'rb')
+formMenus = pickle.load(fp)
 
 def isValid(data):
     return True
@@ -43,6 +53,24 @@ def form02():
     print rspMsg
     print 'end form02 post to server'
     return dumps(rspMsg)    
+
+@route('/v1.0/getSubMenus', method='GET')
+def getSubMenus():
+    print formMenus.getSubMenus(request.query.mainMenu)
+    return dumps(formMenus.getSubMenus(request.query.mainMenu))
+
+
+#http://localhost:8080/v1.0/getNavs?mainMenu=Expense&subMenu=Stationary
+@route('/v1.0/getNavs', method='GET')
+def getSubMenus():
+    print formMenus.getNavs(request.query.mainMenu, request.query.subMenu)
+    return dumps(formMenus.getNavs(request.query.mainMenu, request.query.subMenu))
+
+
+
+
+
+
 
 
 #--static components

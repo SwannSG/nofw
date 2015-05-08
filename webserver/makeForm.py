@@ -6,9 +6,9 @@
 # tdls container for tdl
 #   tdl = tdls[key]
 #       tdl.formID
-#       tdl.category     [cat 1, cat 2, cat 3]
-#       tdl.navigation
-#       tdl.description
+#       tdl.category        [cat 1 | cat 2]
+#       tdl.navigation      LHS link
+#       tdl.description     Detailed description in msg area
 #       tdl.capture     [ (captureTuple_1),...., (captureTuple_n) ]
 #           order captureTuples is order of display
 #   captureTuple

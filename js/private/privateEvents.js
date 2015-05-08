@@ -30,9 +30,24 @@ p.e = (function () {
         onKeyUp:     onKeyUp,
         onExitField: onExitField,
         onFormSubmit:onFormSubmit,
-        AJAXcall:   AJAXcall
+        AJAXcall:   AJAXcall,
+        onclickMainMenu: onclickMainMenu,
+        onclickGetNavs:  onclickGetNavs
     };
 
+
+    function onclickMainMenu(event) {
+        var mainMenu = event.target.text;
+        // get subMenus
+        p.s.getSubMenus(mainMenu);
+    }
+
+    function onclickGetNavs(event, getURL) {
+        // get Navs
+        event.preventDefault();
+        console.log('onclickGetNavs');
+        p.s.getNavs(getURL);
+    }
 
     function AJAXcall() {
         log('AJAXcall');

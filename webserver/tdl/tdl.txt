@@ -2,7 +2,7 @@ START
 CATEGORY
 Expense | Entertainment
 DESCRIPTION
-Entertainment expense paid by company card
+Entertainment expense paid by company card ............................................
 NAVIGATION
 Entertainment paid by company card
 CAPTURE
@@ -18,7 +18,7 @@ START
 CATEGORY
 Expense | Stationary
 DESCRIPTION
-Stationary expense paid by company card
+Stationary expense paid by company card ...............................................
 NAVIGATION
 Stationary paid by company card
 CAPTURE
@@ -29,5 +29,20 @@ Document No | Reference number to relate to invoice | optional | text | <errorMs
 BACKEND
 END
 
+START
+CATEGORY
+Expense | Entertainment
+DESCRIPTION
+Entertainment expense paid by company card ............................................
+NAVIGATION
+AEntertainment paid by company card
+CAPTURE
+Amount | Amount of the bill including VAT but excluding tip | mandatory | finance | <errorMsg>
+Tip | Tip that was paid | mandatory | finance | <errorMsg>
+Date | Date expense incurred | mandatory | date | <errorMsg>
+Description | Brief description | mandatory | textbox | <errorMsg>
+Document No | Reference number to relate to paper source| optional | text | <errorMsg> 
+BACKEND
+END
 
  

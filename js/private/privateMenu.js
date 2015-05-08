@@ -7,7 +7,8 @@ p.m = (function () {
 
     return {
         paintLeftMenu: paintLeftMenu,
-        paintForm:     paintForm
+        paintForm:     paintForm,
+        paintSubMenu:  paintSubMenu
     };
 
 
@@ -28,4 +29,31 @@ p.m = (function () {
         $("#center-pane").append(jQuery.parseJSON(data).form);
     }
 
+
+    function clearSubMenu() {
+        for (var i=0; i < 18; i++) {
+            $('#sm' + i.toString()).empty();
+        }
+    }
+
+    function paintSubMenu(data) {
+        //  paint sub menus in top pain below mainMenu
+        data = jQuery.parseJSON(data);
+        var a;
+        clearSubMenu();
+        for (var i = 0; i < data.subMenus.length; i++) {
+            a = '';
+            //var a = '<a onclick="p.e.onclickGetNavs()" href="/v1.0/getNavs?mainMenu=' +data.mainMenu+ '&subMenu=' +data.subMenus[i] + '">' + data.subMenus[i] + '</a>'
+            a = a.concat('<a onclick="p.e.onclickGetNavs(',
+                         'event, \'/v1.0/getNavs?mainMenu=',
+                         data.mainMenu,
+                         '&subMenu=',
+                         data.subMenus[i],
+                         '\')" href="">',
+                         data.subMenus[i],
+                         '</a>')
+            console.log(a);
+            $('#sm' + i.toString()).append(a);
+        }
+    }
 })();

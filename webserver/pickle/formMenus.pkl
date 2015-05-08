@@ -1,0 +1,35 @@
+(imakeMenu
+menuStuff
+p0
+(dp1
+S'formMenus'
+p2
+(dp3
+S'Expense'
+p4
+(dp5
+S'Stationary'
+p6
+(lp7
+(S'Stationary paid by company card'
+p8
+S'Stationary expense paid by company card ...............................................'
+p9
+I2
+tp10
+asS'Entertainment'
+p11
+(lp12
+(S'AEntertainment paid by company card'
+p13
+S'Entertainment expense paid by company card ............................................'
+p14
+I3
+tp15
+a(S'Entertainment paid by company card'
+p16
+S'Entertainment expense paid by company card ............................................'
+p17
+I1
+tp18
+asssb.

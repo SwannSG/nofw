@@ -8,9 +8,12 @@ p.a = (function() {
 
     return {
         formPostOk:     formPostOk,
-        formPostFail:   formPostFail
+        formPostFail:   formPostFail,
+        getSubMenusFail:getSubMenusFail,
+        getSubMenusOk:  getSubMenusOk,
+        getNavsOk:      getNavsOk,
+        getNavsFail:    getNavsFail
     };
-
 
     function formPostOk(rspMsg){
         $("#top-msg").text(rspMsg);
@@ -23,6 +26,24 @@ p.a = (function() {
         $("#top-msg").text(rspMsg);
         $("#top-msg").css( "color", "red" );
         // leave form in place
+    }
+
+    function getSubMenusOk(rspData) {
+        p.m.paintSubMenu(rspData);
+    }
+
+    function getSubMenusFail(rspMsg) {
+        $("#top-msg").text(rspMsg);
+        $("#top-msg").css( "color", "red" );
+    }
+
+    function getNavsOk(rspData) {
+        console.log(rspData);
+    }
+
+    function getNavsFail(rspData) {
+    $("#top-msg").text(rspMsg);
+    $("#top-msg").css( "color", "red" );
     }
 
 })();

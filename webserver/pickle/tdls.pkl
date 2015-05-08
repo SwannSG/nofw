@@ -75,7 +75,7 @@ S'Entertainment paid by company card'
 p40
 sS'description'
 p41
-S'Entertainment expense paid by company card'
+S'Entertainment expense paid by company card ............................................'
 p42
 sS'formID'
 p43
@@ -140,8 +140,84 @@ asg39
 S'Stationary paid by company card'
 p73
 sg41
-S'Stationary expense paid by company card'
+S'Stationary expense paid by company card ...............................................'
 p74
 sg43
 I2
+sbsI3
+(ireadTDL
+tdl
+p75
+(dp76
+g3
+(lp77
+S'Expense'
+p78
+aS'Entertainment'
+p79
+asg7
+(lp80
+(S'Amount'
+p81
+S'Amount of the bill including VAT but excluding tip'
+p82
+S'mandatory'
+p83
+S'finance'
+p84
+S'<errorMsg>'
+p85
+tp86
+a(S'Tip'
+p87
+S'Tip that was paid'
+p88
+S'mandatory'
+p89
+S'finance'
+p90
+S'<errorMsg>'
+p91
+tp92
+a(S'Date'
+p93
+S'Date expense incurred'
+p94
+S'mandatory'
+p95
+S'date'
+p96
+S'<errorMsg>'
+p97
+tp98
+a(S'Description'
+p99
+S'Brief description'
+p100
+S'mandatory'
+p101
+S'textbox'
+p102
+S'<errorMsg>'
+p103
+tp104
+a(S'Document No'
+p105
+S'Reference number to relate to paper source'
+p106
+S'optional'
+p107
+S'text'
+p108
+S'<errorMsg>'
+p109
+tp110
+asg39
+S'AEntertainment paid by company card'
+p111
+sg41
+S'Entertainment expense paid by company card ............................................'
+p112
+sg43
+I3
 sbs.

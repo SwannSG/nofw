@@ -33,9 +33,20 @@
         </div>
         <div class="col-lg-9">
             <div class="row" style="border: 1px solid black; height:100px;">
-                Top pane
-                <p><a href="/index">Index</a></p>
-                <p><a href="javascript:p.s.getRest('/v1.0/menu/expense')" >Expense</a></p>
+                <!--Top pane-->
+                <ul class="nav nav-pills col-md-offset-3">
+                    <li role="presentation"><a href="#" onclick="p.e.onclickMainMenu(event)">Asset</a></li>
+                    <li role="presentation"><a href="#" onclick="p.e.onclickMainMenu(event)">Expense</a></li>
+                    <li role="presentation"><a href="#" onclick="p.e.onclickMainMenu(event)">Revenue</a></li>
+                    <li role="presentation"><a href="#" onclick="p.e.onclickMainMenu(event)">Liability</a></li>
+                    <li role="presentation"><a href="#" onclick="p.e.onclickMainMenu(event)">Equity</a></li>
+                </ul>
+                <!--sub menu items have id sm0 to sm17-->
+                <div id="sm0" class="col-lg-2 text-center">a</div><div id="sm1" class="col-lg-2 text-center">b</div><div id="sm2" class="col-lg-2 text-center">c</div><div id="sm3" class="col-lg-2 text-center">d</div><div id="sm4" class="col-lg-2 text-center">e</div><div id="sm5" class="col-lg-2 text-center">f</div>
+                <div id="sm6" class="col-lg-2 text-center">a</div><div id="sm7" class="col-lg-2 text-center">b</div><div id="sm8" class="col-lg-2 text-center">c</div><div id="sm9" class="col-lg-2 text-center">d</div><div id="sm10" class="col-lg-2 text-center">e</div><div id="sm11" class="col-lg-2 text-center">f</div>
+                <div id="sm12" class="col-lg-2 text-center">a</div><div id="sm13" class="col-lg-2 text-center">b</div><div id="sm14" class="col-lg-2 text-center">c</div><div id="sm15" class="col-lg-2 text-center">d</div><div id="sm16" class="col-lg-2 text-center">e</div><div id="sm17" class="col-lg-2 text-center">f</div>
+                <!--<p><a href="/index">Index</a></p>-->
+                <!--<p><a href="javascript:p.s.getRest('/v1.0/menu/expense')" >Expense</a></p>-->
             </div>
 
             <div class="row" style="border: 1px solid black; height:30px;">

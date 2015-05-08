@@ -12,7 +12,9 @@ p.s = (function () {
     return {
         getRest:    getRest,
         getForm:    getForm,
-        postForm:   postForm
+        postForm:   postForm,
+        getSubMenus:getSubMenus,
+        getNavs:    getNavs
     };
 
     function postForm(formData) {
@@ -65,7 +67,6 @@ p.s = (function () {
     //called from href="javascript:getRest('get string ....)"
     function getRest(getURL) {
         //rest call to server
-
         jQuery.get(getURL, function (data) {
             p.m.paintLeftMenu(data);
         });
@@ -78,7 +79,64 @@ p.s = (function () {
         });
     }
 
+    function getSubMenus(mainMenu) {
+        var rspOk;
+        var rspMsg;
+        var getURL = '/v1.0/getSubMenus?mainMenu=' + mainMenu;
+        //jQuery.get(getURL, function (data) {
+        //    console.log(data);
+        //});
+        jQuery.get(getURL)
+            .done(ASYN_done)
+            .fail(ASYN_fail)
+            .always(ASYN_always)
 
+        function ASYN_done() {
+            console.log('ASYN_done')
+            rspOk = true;
+        }
+        function ASYN_fail() {
+            console.log('ASYN_fail');
+            rspMsg = status.toUpperCase()  + ' ' + errorThrown;
+            rspOk = false
+        }
+        function ASYN_always(rspData) {
+            if (rspOk) {
+                console.log(rspData);
+                p.a.getSubMenusOk(rspData);
+            }
+            else {
+                p.a.getSubMenusFail(rspMsg);
+            }
+        }
+    }
 
+    function getNavs(getURL) {
+        var rspOk;
+        var rspMsg;
+        jQuery.get(getURL)
+            .done(ASYN_done)
+            .fail(ASYN_fail)
+            .always(ASYN_always)
+
+        function ASYN_done() {
+            console.log('ASYN_done')
+            rspOk = true;
+        }
+        function ASYN_fail() {
+            console.log('ASYN_fail');
+            rspMsg = status.toUpperCase()  + ' ' + errorThrown;
+            rspOk = false
+        }
+        function ASYN_always(rspData) {
+            if (rspOk) {
+                console.log(rspData);
+                p.a.getNavsOk(rspData);
+            }
+            else {
+                p.a.getNavsFail(rspMsg);
+            }
+        }
+    }
 })();
 
