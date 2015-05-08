@@ -78,7 +78,7 @@ p.v = (function () {
             }
             else {
                 // first remove commas from string
-                fieldValue = fieldValue.replace(/\,/g, '')
+                fieldValue = fieldValue.replace(/\,/g, '');
                 $(targetID).val(fieldValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,"));
             }
         }
@@ -110,7 +110,7 @@ p.v = (function () {
             // add decimal
             $(targetID).val(fieldValue + '.00');
         }
-        return true
+        return true;
 
         function ASYN_clearErrorMsg() {
             $(errorID).text('');
@@ -162,6 +162,7 @@ p.v = (function () {
         //valid input
         var autoYearAdd = false;
         var autoYearLength = 0;
+        var fieldLength;
         if (inputKey == '.' || inputKey == ' ' || inputKey == '/' || inputKey == '-') {
             // change to common delimiter '/'
             inputKey = '/';
@@ -173,7 +174,7 @@ p.v = (function () {
             autoYearAdd = true;
             if (fieldValue.slice(-2, -1) === '/') {
                 fieldValue = fieldValue.slice(0, -1) + (new Date).getFullYear().toString();
-                autoyearLength = 4;
+                autoYearLength = 4;
             }
             else {
                 fieldValue = fieldValue.slice(0, -1) + '/' + (new Date).getFullYear().toString();
@@ -294,7 +295,7 @@ p.v = (function () {
     }
 
     function zeroLengthField(fieldValue) {
-        console.log('zeroLengthField')
+        console.log('zeroLengthField');
         if (fieldValue.length == 0) {
             return true;
         }

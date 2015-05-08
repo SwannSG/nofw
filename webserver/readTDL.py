@@ -1,5 +1,10 @@
 # read TDL text format and creat tdl object
+import globalConfig
 import pickle
+
+
+dirPickle = globalConfig.dirPickle
+dirTdlTxt = globalConfig.dirTdlTxt
 
 # collection of tdl objects
 tdls = {}
@@ -30,7 +35,7 @@ class tdl():
 # read a tdl text file
 state = '?'
 sep = '|'
-fp = open('/home/swannsg/development/nofw/tdl/tdl.txt')
+fp = open('%s/tdl.txt' % dirTdlTxt)
 for line in fp:
     line = line.strip()
     if len(line) == 0:
@@ -84,7 +89,7 @@ for line in fp:
         tdls[o.formID] = o
 
 fp.close()
-fp = open('/home/swannsg/development/nofw/tdl/tdls.pkl', 'wb')
+fp = open('%s/tdls.pkl' % dirPickle, 'wb')
 pickle.dump(tdls, fp)
 fp.close()
         

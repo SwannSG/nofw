@@ -119,6 +119,12 @@ def static12(filename):
                        root='/home/swannsg/development/UAS/bower_components/jqueryui')
 
 
+@route('/home/swannsg/development/UAS/bower_components/bootstrap/dist/fonts/<filename>')
+def static13(filename):
+    print 'static13'
+    return static_file(filename,
+                       root='/home/swannsg/development/UAS/bower_components/bootstrap/dist/fonts')
+
 run(reloader=True)    
 run(host='localhost', port=8080, debug=True)
 

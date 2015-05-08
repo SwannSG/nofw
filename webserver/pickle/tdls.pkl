@@ -53,7 +53,7 @@ S'Brief description'
 p28
 S'mandatory'
 p29
-S'box'
+S'textbox'
 p30
 S'<errorMsg>'
 p31
@@ -97,62 +97,51 @@ asg7
 p50
 S'Amount of the stationary invoice including VAT'
 p51
-S'finance'
+S'mandatory'
 p52
-S'<errorMsg>'
+S'finance'
 p53
-tp54
+S'<errorMsg>'
+p54
+tp55
 a(S'Date'
-p55
-S'Date expense incurred'
 p56
-S'*'
+S'Date expense incurred'
 p57
-S'date'
+S'*'
 p58
-S'<errorMsg>'
+S'date'
 p59
-tp60
+S'<errorMsg>'
+p60
+tp61
 a(S'Description'
-p61
-S'Brief description'
 p62
-g57
-S'box'
+S'Brief description'
 p63
-S'<errorMsg>'
+g58
+S'textbox'
 p64
-tp65
-a(S'Document No'
-p66
-S'Reference number to relate to invoice'
-p67
-S'text'
-p68
 S'<errorMsg>'
+p65
+tp66
+a(S'Document No'
+p67
+S'Reference number to relate to invoice'
+p68
+S'optional'
 p69
-tp70
+S'text'
+p70
+S'<errorMsg>'
+p71
+tp72
 asg39
 S'Stationary paid by company card'
-p71
+p73
 sg41
 S'Stationary expense paid by company card'
-p72
+p74
 sg43
 I2
-sbsI3
-(ireadTDL
-tdl
-p73
-(dp74
-g3
-g46
-sg7
-g49
-sg39
-g71
-sg41
-g72
-sg43
-I3
 sbs.
