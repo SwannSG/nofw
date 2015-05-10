@@ -92,17 +92,14 @@ p.s = (function () {
             .always(ASYN_always)
 
         function ASYN_done() {
-            console.log('ASYN_done')
             rspOk = true;
         }
         function ASYN_fail() {
-            console.log('ASYN_fail');
             rspMsg = status.toUpperCase()  + ' ' + errorThrown;
             rspOk = false
         }
         function ASYN_always(rspData) {
             if (rspOk) {
-                console.log(rspData);
                 p.a.getSubMenusOk(rspData);
             }
             else {
@@ -111,6 +108,7 @@ p.s = (function () {
         }
     }
 
+    // menu data for LHS
     function getNavs(getURL) {
         var rspOk;
         var rspMsg;
@@ -120,17 +118,14 @@ p.s = (function () {
             .always(ASYN_always)
 
         function ASYN_done() {
-            console.log('ASYN_done')
             rspOk = true;
         }
         function ASYN_fail() {
-            console.log('ASYN_fail');
             rspMsg = status.toUpperCase()  + ' ' + errorThrown;
             rspOk = false
         }
         function ASYN_always(rspData) {
             if (rspOk) {
-                console.log(rspData);
                 p.a.getNavsOk(rspData);
             }
             else {

@@ -32,9 +32,18 @@ p.e = (function () {
         onFormSubmit:onFormSubmit,
         AJAXcall:   AJAXcall,
         onclickMainMenu: onclickMainMenu,
-        onclickGetNavs:  onclickGetNavs
+        onclickGetNavs:  onclickGetNavs,
+        onclickGetNavHelp: onclickGetNavHelp,
+        onclickGetForm: onclickGetForm
     };
 
+    function onclickGetNavHelp(index) {
+        $('#top-msg').text(p.g.navsMenuData.navs[index].desc);
+    }
+
+    function onclickGetForm(formID) {
+
+    }
 
     function onclickMainMenu(event) {
         var mainMenu = event.target.text;

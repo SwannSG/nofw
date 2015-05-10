@@ -8,7 +8,8 @@ p.m = (function () {
     return {
         paintLeftMenu: paintLeftMenu,
         paintForm:     paintForm,
-        paintSubMenu:  paintSubMenu
+        paintSubMenu:  paintSubMenu,
+        paintNavs:     paintNavs
     };
 
 
@@ -55,5 +56,61 @@ p.m = (function () {
             console.log(a);
             $('#sm' + i.toString()).append(a);
         }
+    }
+
+    // paints left column
+    function paintNavs() {
+    // data is loaded in p.g.navsMenuData
+        $("#left-col").empty();
+        var element;
+
+        // mainMenu value
+        element = '';
+        element = element.concat(
+            '<p id="left-col-main-menu">',
+            p.g.navsMenuData.mainMenu,
+            '</p>'
+        );
+        $("#left-col").append(element);
+        $("#left-col-main-menu").css('margin', '0px 0px 0px 0px');
+        $("#left-col-main-menu").css('padding', '4px 0px 0px 4px');
+
+        // subMenu value
+        element = '';
+        element = element.concat(
+            '<p id="left-col-sub-menu">',
+            p.g.navsMenuData.subMenu,
+            '</p>'
+        );
+        $("#left-col").append(element);
+        $("#left-col-sub-menu").css('margin', '0px 0px 0px 0px');
+        $("#left-col-sub-menu").css('padding', '4px 0px 0px 20px');
+
+
+        element = '<table>';
+        for (var i = 0; i < p.g.navsMenuData.navs.length; i++ ) {
+            element = element.concat(
+                '<tr>',
+                '<td class="col-lg-10">',
+                __makeNavAnchor(p.g.navsMenuData.navs[i].formID, p.g.navsMenuData.navs[i].nav),
+                '</td>',
+                '<td class="col-lg-11">',
+                __makeNavHelp(i),
+                '</td>',
+                '</tr>'
+            );
+        }
+        element = element.concat(
+            '</table>'
+        )
+        $("#left-col").append(element);
+    }
+
+    function __makeNavAnchor(formID, nav) {
+        return '<a href="#" onclick="p.e.onclickGetForm(' + formID + ')">' + nav + '</a>';
+    }
+
+    function __makeNavHelp(index) {
+        return '<a class="glyphicon glyphicon-question-sign" href="#" onclick="p.e.onclickGetNavHelp(' + index + ')"></a>';
     }
 })();

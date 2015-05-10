@@ -5,4 +5,10 @@
 // g for general functions
 p.g = (function () {
 
+    var navsMenuData;
+
+    return {
+        navsMenuData: navsMenuData
+    }
+
 })();

@@ -38,7 +38,9 @@ p.a = (function() {
     }
 
     function getNavsOk(rspData) {
-        console.log(rspData);
+        p.g.navsMenuData = jQuery.parseJSON(rspData)
+        // transfer to m
+        p.m.paintNavs();
     }
 
     function getNavsFail(rspData) {
