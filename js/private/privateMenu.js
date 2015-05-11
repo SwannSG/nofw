@@ -30,71 +30,59 @@ p.m = (function () {
         $("#center-pane").append(jQuery.parseJSON(data).form);
     }
 
-
     function clearSubMenu() {
-        for (var i=0; i < 18; i++) {
-            $('#sm' + i.toString()).empty();
-        }
+        $('#top-sub-menu').empty();
     }
 
     function paintSubMenu(data) {
         //  paint sub menus in top pain below mainMenu
         data = jQuery.parseJSON(data);
-        var a;
+        var r='';
+        var lenSubMenus = data.subMenus.length;
         clearSubMenu();
-        for (var i = 0; i < data.subMenus.length; i++) {
-            a = '';
+        for (var i = 0; i < lenSubMenus; i++) {
             //var a = '<a onclick="p.e.onclickGetNavs()" href="/v1.0/getNavs?mainMenu=' +data.mainMenu+ '&subMenu=' +data.subMenus[i] + '">' + data.subMenus[i] + '</a>'
-            a = a.concat('<a onclick="p.e.onclickGetNavs(',
+            r = r.concat('<li style="margin-left: 25px;">',
+                         '<a onclick="p.e.onclickGetNavs(',
                          'event, \'/v1.0/getNavs?mainMenu=',
                          data.mainMenu,
                          '&subMenu=',
                          data.subMenus[i],
                          '\')" href="">',
                          data.subMenus[i],
-                         '</a>')
-            console.log(a);
-            $('#sm' + i.toString()).append(a);
+                         '</a>',
+                        '</li>');
         }
+        $('#top-sub-menu').append(r);
+    }
+
+
+    function clearLHS() {
+        $("#lhs-main-menu").empty();
+        $("#lhs-sub-menu").empty();
+        $("#lhs-navs").empty();
     }
 
     // paints left column
     function paintNavs() {
     // data is loaded in p.g.navsMenuData
-        $("#left-col").empty();
         var element;
-
+        clearLHS();
+        p.g.navsIndex = -1;
         // mainMenu value
-        element = '';
-        element = element.concat(
-            '<p id="left-col-main-menu">',
-            p.g.navsMenuData.mainMenu,
-            '</p>'
-        );
-        $("#left-col").append(element);
-        $("#left-col-main-menu").css('margin', '0px 0px 0px 0px');
-        $("#left-col-main-menu").css('padding', '4px 0px 0px 4px');
-
+        $("#lhs-main-menu").text(p.g.navsMenuData.mainMenu);
         // subMenu value
-        element = '';
-        element = element.concat(
-            '<p id="left-col-sub-menu">',
-            p.g.navsMenuData.subMenu,
-            '</p>'
-        );
-        $("#left-col").append(element);
-        $("#left-col-sub-menu").css('margin', '0px 0px 0px 0px');
-        $("#left-col-sub-menu").css('padding', '4px 0px 0px 20px');
+        $("#lhs-sub-menu").text(p.g.navsMenuData.subMenu);
 
-
+        // navs table
         element = '<table>';
         for (var i = 0; i < p.g.navsMenuData.navs.length; i++ ) {
             element = element.concat(
                 '<tr>',
-                '<td class="col-lg-10">',
+                '<td class="col-lg-10 text-center">',
                 __makeNavAnchor(p.g.navsMenuData.navs[i].formID, p.g.navsMenuData.navs[i].nav),
                 '</td>',
-                '<td class="col-lg-11">',
+                '<td class="col-lg-1 text-right">',
                 __makeNavHelp(i),
                 '</td>',
                 '</tr>'
@@ -103,7 +91,7 @@ p.m = (function () {
         element = element.concat(
             '</table>'
         )
-        $("#left-col").append(element);
+        $("#lhs-navs").append(element);
     }
 
     function __makeNavAnchor(formID, nav) {

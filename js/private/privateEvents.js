@@ -6,25 +6,6 @@
 // e for events
 p.e = (function () {
 
-    var keycode = {
-        8:   'BACKSPACE',
-        188: 'COMMA',
-        46:  'DELETE',
-        40:  'DOWN',
-        35:  'END',
-        13:  'ENTER',
-        27:  'ESCAPE',
-        36:  'HOME',
-        37:  'LEFT',
-        34:  'PAGE_DOWN',
-        33:  'PAGE_UP',
-        190: 'PERIOD',
-        39:  'RIGHT',
-        32:  'SPACE',
-        9:   'TAB',
-        38:  'UP'
-    };
-
     // made public
     return {
         onKeyUp:     onKeyUp,
@@ -38,7 +19,14 @@ p.e = (function () {
     };
 
     function onclickGetNavHelp(index) {
-        $('#top-msg').text(p.g.navsMenuData.navs[index].desc);
+        if (index === p.g.navsIndex) {
+            $('#top-msg').text('');
+            p.g.navsIndex = -1;
+        }
+        else {
+            p.g.navsIndex = index;
+            $('#top-msg').text(p.g.navsMenuData.navs[index].desc);
+        }
     }
 
     function onclickGetForm(formID) {

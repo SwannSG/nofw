@@ -6,9 +6,11 @@
 p.g = (function () {
 
     var navsMenuData;
+    var navsIndex;
 
     return {
-        navsMenuData: navsMenuData
+        navsMenuData:   navsMenuData,
+        navsIndex:      navsIndex
     }
 
 })();
