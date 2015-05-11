@@ -10,6 +10,11 @@ dirPickle = globalConfig.dirPickle
 
 fp = open('%s/formMenus.pkl' % dirPickle, 'rb')
 formMenus = pickle.load(fp)
+fp.close()
+
+fp = open('%s/tdls.pkl' % dirPickle, 'rb')
+tdls = pickle.load(fp)
+fp.close()
 
 def isValid(data):
     return True
@@ -40,9 +45,20 @@ def form01():
         result = result + line
     return dumps({'form':result})    
 
+#/v1.0/get/form?formID=1
+@route('/v1.0/get/form', method='GET')
+def getForm():
+    formID = request.query.formID
+    fp = open('/home/swannsg/development/nofw/webserver/html/form_%s.html' % formID)
+    result = ''
+    for line in fp:
+        result = result + line
+    return dumps({'form':result,
+                  'desc': tdls[int(formID)].description})
+
 @route('/v1.0/post/form', method='POST')
-def form02():
-    print 'form02 post to server'
+def postForm():
+    print 'postForm'
     data = request.json
     if isValid(data):
         rspMsg = {'rspMsg': 'Update successful',
@@ -56,11 +72,10 @@ def form02():
 
 @route('/v1.0/getSubMenus', method='GET')
 def getSubMenus():
-    print formMenus.getSubMenus(request.query.mainMenu)
     return dumps(formMenus.getSubMenus(request.query.mainMenu))
 
 
-#http://localhost:8080/v1.0/getNavs?mainMenu=Expense&subMenu=Stationary
+#/v1.0/getNavs?mainMenu=Expense&subMenu=Stationary
 @route('/v1.0/getNavs', method='GET')
 def getSubMenus():
     print formMenus.getNavs(request.query.mainMenu, request.query.subMenu)

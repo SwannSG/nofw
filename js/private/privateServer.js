@@ -72,20 +72,9 @@ p.s = (function () {
         });
     }
 
-
-    function getForm(getURL) {
-        jQuery.get(getURL, function (data) {
-            p.m.paintForm(data);
-        });
-    }
-
-    function getSubMenus(mainMenu) {
-        var rspOk;
-        var rspMsg;
-        var getURL = '/v1.0/getSubMenus?mainMenu=' + mainMenu;
-        //jQuery.get(getURL, function (data) {
-        //    console.log(data);
-        //});
+    // /v1.0/get/form?formID=1
+    function getForm(formID) {
+        var getURL = '/v1.0/get/form?formID=' + formID.toString()
         jQuery.get(getURL)
             .done(ASYN_done)
             .fail(ASYN_fail)
@@ -94,7 +83,33 @@ p.s = (function () {
         function ASYN_done() {
             rspOk = true;
         }
-        function ASYN_fail() {
+        function ASYN_fail(xhr, status, errorThrown) {
+            rspMsg = status.toUpperCase()  + ' ' + errorThrown;
+            rspOk = false
+        }
+        function ASYN_always(rspData) {
+            if (rspOk) {
+                p.a.getFormOk(rspData);
+            }
+            else {
+                p.a.getFormFail(rspMsg);
+            }
+        }
+    }
+
+    function getSubMenus(mainMenu) {
+        var rspOk;
+        var rspMsg;
+        var getURL = '/v1.0/getSubMenus?mainMenu=' + mainMenu;
+        jQuery.get(getURL)
+            .done(ASYN_done)
+            .fail(ASYN_fail)
+            .always(ASYN_always)
+
+        function ASYN_done() {
+            rspOk = true;
+        }
+        function ASYN_fail(xhr, status, errorThrown) {
             rspMsg = status.toUpperCase()  + ' ' + errorThrown;
             rspOk = false
         }

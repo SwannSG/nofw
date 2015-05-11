@@ -12,8 +12,21 @@ p.a = (function() {
         getSubMenusFail:getSubMenusFail,
         getSubMenusOk:  getSubMenusOk,
         getNavsOk:      getNavsOk,
-        getNavsFail:    getNavsFail
+        getNavsFail:    getNavsFail,
+        getFormOk:      getFormOk,
+        getFormFail:    getFormFail
     };
+
+    function getFormOk(rspData) {
+        log(rspData)
+        p.m.paintForm(rspData);
+    }
+
+    function getFormFail(rspMsg) {
+        $("#top-msg").text(rspMsg);
+        $("#top-msg").css( "color", "red" );
+    }
+
 
     function formPostOk(rspMsg){
         $("#top-msg").text(rspMsg);

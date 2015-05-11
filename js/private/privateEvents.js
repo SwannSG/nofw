@@ -30,7 +30,7 @@ p.e = (function () {
     }
 
     function onclickGetForm(formID) {
-
+        p.s.getForm(formID);
     }
 
     function onclickMainMenu(event) {

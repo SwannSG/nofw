@@ -25,9 +25,12 @@ p.m = (function () {
         }
     }
 
+
     function paintForm(data) {
+        var data = jQuery.parseJSON(data);
+        $("#top-msg").text(data.desc);
         $("#center-pane").empty();
-        $("#center-pane").append(jQuery.parseJSON(data).form);
+        $("#center-pane").append(data.form);
     }
 
     function clearSubMenu() {
@@ -79,7 +82,7 @@ p.m = (function () {
         for (var i = 0; i < p.g.navsMenuData.navs.length; i++ ) {
             element = element.concat(
                 '<tr>',
-                '<td class="col-lg-10 text-center">',
+                '<td class="col-lg-10 text-left">',
                 __makeNavAnchor(p.g.navsMenuData.navs[i].formID, p.g.navsMenuData.navs[i].nav),
                 '</td>',
                 '<td class="col-lg-1 text-right">',
