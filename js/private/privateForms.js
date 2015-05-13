@@ -16,8 +16,10 @@ p.f = (function () {
     }
 
 
-    function doFormFlow(targetID, fieldIDs) {
+    function doFormFlow(targetID) {
         log('doFormFlow');
+        var fieldIDs;
+        fieldIDs = __getFormFieldIDs(targetID);
         var formData;
         if ( isFormValid(fieldIDs) ) {
             // form data is good
@@ -31,6 +33,32 @@ p.f = (function () {
             $('#top-msg').text('Please correct form and re-submit');
             setTimeout(ASYN_clearTopMsg, 3000);
         }
+    }
+
+
+    function __getFormFieldIDs(targetID) {
+        log('getFormFieldIDs');
+        var formFieldIDs = [];
+        var fields;
+        var length;
+        var prevLength = 0;
+        // input
+        fields = $(targetID + ' input');
+        length = fields.length;
+        for (i=0; i < length; i++) {
+            formFieldIDs[i] = fields[i].getAttribute('id');
+        }
+        prevLength = prevLength + length;
+
+        // textarea
+        fields = $(targetID + ' textarea');
+        length = fields.length;
+        for (i=0; i<length; i++) {
+            formFieldIDs[i + prevLength] = fields[i].getAttribute('id');
+        }
+        prevLength = prevLength + length;
+
+        return formFieldIDs;
     }
 
 

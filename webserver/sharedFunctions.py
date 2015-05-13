@@ -6,4 +6,18 @@ def captureTupleNames(t):
         return captureName, captureDescription, captureMandatory, captureType,captureErrorMsg
     else:
         print 'Error - incorrect tuple length for captureTupleNames'
+
+
+def formatInputID(fieldName):
+    fieldName = fieldName.lower()
+    fieldName = fieldName.replace(' ', '-')
+    return fieldName
+
+def boolMandatory(string):
+    if string.upper().strip() == 'MANDATORY':
+        return True
+    else:
+        return False
+
+
 # ********************************************end shared gunctions***********************************************************

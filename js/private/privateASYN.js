@@ -18,7 +18,6 @@ p.a = (function() {
     };
 
     function getFormOk(rspData) {
-        log(rspData)
         p.m.paintForm(rspData);
     }
 

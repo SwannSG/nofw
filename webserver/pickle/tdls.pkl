@@ -69,155 +69,162 @@ p36
 S'<errorMsg>'
 p37
 tp38
-asS'navigation'
+asS'description'
 p39
-S'Entertainment paid by company card'
-p40
-sS'description'
-p41
 S'Entertainment expense paid by company card ............................................'
-p42
+p40
 sS'formID'
-p43
+p41
 I1
+sS'navigation'
+p42
+S'Entertainment paid by company card'
+p43
+sS'capture_ss'
+p44
+(dp45
 sbsI2
 (ireadTDL
 tdl
-p44
-(dp45
+p46
+(dp47
 g3
-(lp46
+(lp48
 S'Expense'
-p47
+p49
 aS'Stationary'
-p48
-asg7
-(lp49
-(S'Amount'
 p50
-S'Amount of the stationary invoice including VAT'
-p51
-S'mandatory'
+asg7
+(lp51
+(S'Amount'
 p52
-S'finance'
+S'Amount of the stationary invoice including VAT'
 p53
-S'<errorMsg>'
+S'mandatory'
 p54
-tp55
-a(S'Date'
+S'finance'
+p55
+S'<errorMsg>'
 p56
-S'Date expense incurred'
-p57
-S'*'
+tp57
+a(S'Date'
 p58
-S'date'
+S'Date expense incurred'
 p59
-S'<errorMsg>'
+S'*'
 p60
-tp61
-a(S'Description'
+S'date'
+p61
+S'<errorMsg>'
 p62
-S'Brief description'
-p63
-g58
-S'textbox'
+tp63
+a(S'Description'
 p64
-S'<errorMsg>'
+S'Brief description'
 p65
-tp66
-a(S'Document No'
-p67
-S'Reference number to relate to invoice'
-p68
-S'optional'
-p69
-S'text'
-p70
+g60
+S'textbox'
+p66
 S'<errorMsg>'
+p67
+tp68
+a(S'Document No'
+p69
+S'Reference number to relate to invoice'
+p70
+S'optional'
 p71
-tp72
-asg39
-S'Stationary paid by company card'
+S'text'
+p72
+S'<errorMsg>'
 p73
-sg41
+tp74
+asg39
 S'Stationary expense paid by company card ...............................................'
-p74
-sg43
+p75
+sg41
 I2
+sg42
+S'Stationary paid by company card'
+p76
+sg44
+(dp77
 sbsI3
 (ireadTDL
 tdl
-p75
-(dp76
-g3
-(lp77
-S'Expense'
 p78
-aS'Entertainment'
-p79
-asg7
+(dp79
+g3
 (lp80
-(S'Amount'
+S'Expense'
 p81
-S'Amount of the bill including VAT but excluding tip'
+aS'Entertainment'
 p82
-S'mandatory'
-p83
-S'finance'
+asg7
+(lp83
+(S'Amount'
 p84
-S'<errorMsg>'
+S'Amount of the bill including VAT but excluding tip'
 p85
-tp86
-a(S'Tip'
-p87
-S'Tip that was paid'
-p88
 S'mandatory'
-p89
+p86
 S'finance'
+p87
+S'<errorMsg>'
+p88
+tp89
+a(S'Tip'
 p90
-S'<errorMsg>'
+S'Tip that was paid'
 p91
-tp92
-a(S'Date'
+S'mandatory'
+p92
+S'finance'
 p93
-S'Date expense incurred'
+S'<errorMsg>'
 p94
-S'mandatory'
-p95
-S'date'
+tp95
+a(S'Date'
 p96
-S'<errorMsg>'
+S'Date expense incurred'
 p97
-tp98
-a(S'Description'
-p99
-S'Brief description'
-p100
 S'mandatory'
-p101
-S'textbox'
+p98
+S'date'
+p99
+S'<errorMsg>'
+p100
+tp101
+a(S'Description'
 p102
-S'<errorMsg>'
+S'Brief description'
 p103
-tp104
-a(S'Document No'
+S'mandatory'
+p104
+S'textbox'
 p105
-S'Reference number to relate to paper source'
-p106
-S'optional'
-p107
-S'text'
-p108
 S'<errorMsg>'
+p106
+tp107
+a(S'Document No'
+p108
+S'Reference number to relate to paper source'
 p109
-tp110
-asg39
-S'AEntertainment paid by company card'
+S'optional'
+p110
+S'text'
 p111
-sg41
-S'Entertainment expense paid by company card ............................................'
+S'<errorMsg>'
 p112
-sg43
+tp113
+asg39
+S'Entertainment expense paid by company card ............................................'
+p114
+sg41
 I3
+sg42
+S'AEntertainment paid by company card'
+p115
+sg44
+(dp116
 sbs.

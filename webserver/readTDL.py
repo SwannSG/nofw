@@ -28,6 +28,8 @@ class tdl():
         self.description = description
         self.navigation = navigation
         self.capture = capture
+        # capture server side
+        self.capture_ss = {}
 
     def __repr__(self):
         return ('formID: %s | %s' % (self.formID, self.description))

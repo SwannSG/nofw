@@ -24,6 +24,7 @@
 #       errorMsg        error message to display if field completed incorrectly
 
 import globalConfig
+import sharedFunctions
 import pickle
 import readTDL
 
@@ -42,22 +43,13 @@ dirPickle = globalConfig.dirPickle
 dirForms = globalConfig.dirForms
 
 
-# *********************************************shared functions**************************************************************
-def captureTupleNames(t):
-    if len(t) == 5:
-        captureName, captureDescription, captureMandatory, captureType, captureErrorMsg = t[0].strip(), t[1].strip(), t[2].strip(), t[3].strip(), t[4].strip()
-        return captureName, captureDescription, captureMandatory, captureType,captureErrorMsg
-    else:
-        print 'Error - incorrect tuple length for captureTupleNames'
-# ********************************************end shared gunctions***********************************************************
-        
 
 # *******************************************assemble form html artifact*******************************************************
 def assembleForm(tdl):
     s0 = formStart(tdl.formID, getFieldNameList(tdl))
     formGroups = []
     for captureTuple in tdl.capture:
-        captureName, captureDescription, captureMandatory, captureType,captureErrorMsg = captureTupleNames(captureTuple)
+        captureName, captureDescription, captureMandatory, captureType,captureErrorMsg = sharedFunctions.captureTupleNames(captureTuple)
         formGroups.append(formGroup(captureName, boolMandatory(captureMandatory), captureType, captureDescription, captureErrorMsg)) 
     result = s0
     for each in formGroups:
@@ -67,17 +59,8 @@ def assembleForm(tdl):
     return result                                
 
 def formStart(formID, fieldNameList):
-    s0 = '<form class="form-horizontal" id="form-%s" method="#" onsubmit="p.e.onFormSubmit(event,[' % formID
-    s1 = ''
-    first = True
-    for field in fieldNameList:
-        if first:
-            first = False
-            s1 = "%s'%s'" % (s1, field) 
-        else:
-            s1 = "%s, '%s'" % (s1, field)
-    s2 = '])">'
-    return '''%s%s%s\n''' % (s0, s1, s2)
+    s0 = '<form class="form-horizontal" id="form-%s" method="#" onsubmit="p.e.onFormSubmit(event)">' % formID
+    return '''%s\n''' % (s0)
 
 
 def getFieldNameList(tdl):
@@ -90,7 +73,6 @@ def formGroup(fieldName, mandatory, formatType, helpText, errorMsg):
     """
         str fieldName, bool mandatory, str formatType, str helpText, str errorMsg
     """
-    print mandatory, formatType
     inputID = formatInputID(fieldName)
     inputLabel = formatInputLabel(fieldName, mandatory)
     inputType = getInputType(formatType)
@@ -132,9 +114,7 @@ def formatInputLabel(fieldName, mandatory):
         return fieldName
 
 def getInputType(formatType):
-    print formatType
     formatType = formatType.upper()
-    print formatType
     if formatType == 'NUMBER':
         return 'number'
     elif formatType == 'TEXTBOX':
@@ -167,7 +147,7 @@ def formEnd():
     s1 = """\t\t<div class="col-sm-offset-2 col-sm-10">\n"""
     s2 = """\t\t\t<button type="submit" class="btn btn-default">Submit</button>\n"""
     s3 = """\t\t\t<button type="cancel" class="btn btn-default">Cancel</button>\n"""
-    s4 = """<\t\t/div>\n"""
+    s4 = """\t\t</div>\n"""
     s5 = """\t</div>\n"""
     s6 = """</form>\n"""
     return '%s%s%s%s%s%s%s' %(s0, s1, s2, s3, s4, s5, s6)
@@ -200,12 +180,10 @@ def isCaptureTupleValid(t):
     # pass captureTuple
     # returns True (isValid) or False
     if len(t) <> 5:
-        print 'captureTuple is not 5 elements'
-        print t
         return False
     global MANDATORY    
     global FORMAT
-    captureName, captureDescription, captureMandatory, captureType,captureErrorMsg = captureTupleNames(t)
+    captureName, captureDescription, captureMandatory, captureType,captureErrorMsg = sharedFunctions.captureTupleNames(t)
     if len(captureName) == 0:
         print 'captureName error'
         return False
@@ -235,18 +213,33 @@ def hasUniqueCaptureNames(capture):
 
 # *******************************************end check if tdl is valid********************************************************
 
+# *******************************************update capture_ss************************************************
+def makeCaptureSS(tdl):
+    captureTuples = tdl.capture
+    for captureTuple in captureTuples:
+        mandatory = captureTuple[2]
+        captureType = captureTuple[3]
+        captureNameID = sharedFunctions.formatInputID(captureTuple[0])
+        if sharedFunctions.boolMandatory(mandatory):
+            tdl.capture_ss[captureNameID] = (True, captureType)
+        else:
+            tdl.capture_ss[captureNameID] = (False, captureType)
+# *************************************** end update capture_ss************************************************
 
 # *******************************************create form html artifacts*******************************************************
 fp = open('%s/tdls.pkl' % dirPickle, 'rb')
 tdls = pickle.load(fp)
 for each in tdls:
     tdl = tdls[each]
+    print tdl.formID
+
     if isTdlValid(tdl):
-        # carry on
+        # valid TDL
         formHTML = assembleForm(tdl)
         fp = open('%s/form_%s.html' % (dirForms, tdl.formID), 'w')
         fp.write(formHTML)
-        fp.close
+        fp.close()
+        makeCaptureSS(tdl)
     else:
         print 'tdl %s invalid' % (each)
 # *******************************************end create form html artifacts**************************************************

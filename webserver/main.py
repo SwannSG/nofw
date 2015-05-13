@@ -4,7 +4,8 @@ from json import dumps
 import globalConfig
 import readTDL
 import isTdlValid
-import makeMenu
+import makeForm
+import inputValidation
 
 dirPickle = globalConfig.dirPickle
 
@@ -24,26 +25,6 @@ def isValid(data):
 def home():
     return static_file('index.html', root='/home/swannsg/development/nofw/html')
  
-@route('/v1.0/menu/expense', method='GET')
-def menu_expense():
-    leftMenuItems = []
-    menuItem = {'text': 'Entertainment',
-                'href': '/v1.0/form01'}
-    leftMenuItems.append(menuItem)
-    menuItem = {'text': 'Entertainment Other',
-                'href': '/v1.0/form02'}
-    response.content_type = 'application/json'
-    leftMenuItems.append(menuItem)
-    return dumps(leftMenuItems)
-
-@route('/v1.0/form01', method='GET')
-def form01():
-    # get fragment
-    fp = open('/home/swannsg/development/nofw/html/forms/form01.html')
-    result = ''
-    for line in fp:
-        result = result + line
-    return dumps({'form':result})    
 
 #/v1.0/get/form?formID=1
 @route('/v1.0/get/form', method='GET')
@@ -56,19 +37,38 @@ def getForm():
     return dumps({'form':result,
                   'desc': tdls[int(formID)].description})
 
+
+
+
+# /v1.0/post/form
 @route('/v1.0/post/form', method='POST')
 def postForm():
     print 'postForm'
     data = request.json
-    if isValid(data):
-        rspMsg = {'rspMsg': 'Update successful',
-                  'rspOk': True}
+    tdlID = int(data['formID'].split('-')[1])
+
+
+
+    # validate fields
+    if inputValidation.areInputFieldsValid(tdls[tdlID].capture_ss, data):
+        print 'passes validation'
+        fieldValues = inputValidation.getFieldValues(tdls[tdlID].capture_ss, data)
+        print fieldValues
+        # update database
+        dbUpdateOk = True
+        if dbUpdateOk:
+            rspMsg = {'rspMsg': 'Update successful',
+                      'rspOk': True}
+        else:
+            rspMsg = {'rspMsg': 'Database error',
+            'rspOk': False}
+
     else:
-        rspMsg = {'rspMsg': 'Form not correct with some detail',
+        rspMsg = {'rspMsg': 'Form field error',
                   'rspOk': False}
-    print rspMsg
-    print 'end form02 post to server'
+    print 'end postForm'
     return dumps(rspMsg)    
+
 
 @route('/v1.0/getSubMenus', method='GET')
 def getSubMenus():
