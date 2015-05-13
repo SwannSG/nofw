@@ -1,7 +1,7 @@
 import pickle
 import readTDL
 import globalConfig
-import sharedFunctions
+import globalFunctions
 
 MANDATORY = globalConfig.MANDATORY
 FORMAT = globalConfig.FORMAT
@@ -40,7 +40,7 @@ def isCaptureTupleValid(t):
         return False
     global MANDATORY    
     global FORMAT
-    captureName, captureDescription, captureMandatory, captureType,captureErrorMsg = sharedFunctions.captureTupleNames(t)
+    captureName, captureDescription, captureMandatory, captureType,captureErrorMsg = globalFunctions.captureTupleNames(t)
     if len(captureName) == 0:
         print 'captureName error'
         return False

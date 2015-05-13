@@ -2,20 +2,16 @@ import pickle
 from bottle import route, run, static_file, debug, template, request, response
 from json import dumps
 import globalConfig
-import readTDL
-import isTdlValid
-import makeForm
+import globalFunctions
+#import globalClasses
+#import readTDL
+#import isTdlValid
+#import makeForm
 import inputValidation
 
-dirPickle = globalConfig.dirPickle
+formMenus = globalFunctions.loadFormMenus()
+tdls = globalFunctions.loadTDLS()
 
-fp = open('%s/formMenus.pkl' % dirPickle, 'rb')
-formMenus = pickle.load(fp)
-fp.close()
-
-fp = open('%s/tdls.pkl' % dirPickle, 'rb')
-tdls = pickle.load(fp)
-fp.close()
 
 def isValid(data):
     return True
@@ -46,9 +42,6 @@ def postForm():
     print 'postForm'
     data = request.json
     tdlID = int(data['formID'].split('-')[1])
-
-
-
     # validate fields
     if inputValidation.areInputFieldsValid(tdls[tdlID].capture_ss, data):
         print 'passes validation'

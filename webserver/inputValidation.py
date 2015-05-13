@@ -1,7 +1,7 @@
 # validation rules
 import re
-from datetime import datetime
-import sharedFunctions
+import datetime
+import globalFunctions
 
 def isDate(s):
     # expect dd/mm/yyyy
@@ -12,7 +12,7 @@ def isDate(s):
     year = int('%s%s' % (m.group(3), m.group(4)))
     if m:
         try:
-            datetime(year, month, day)
+            datetime.date(year, month, day)
             return True
         except:
             return False
@@ -61,15 +61,19 @@ def areInputFieldsValid(capture_ss, data):
         inputType = capture_ss[fieldID][1]
         if inputType.upper() == 'FINANCE':
             if not isFinanceValue(data[fieldID]):
+                print 'fieldID: %s FINANCE fails' % fieldID
                 return False
         elif inputType.upper() == 'DATE':
             if not isDate(data[fieldID]):
+                print 'fieldID: %s DATE fails value %s' % (fieldID, data[fieldID])
                 return False
         elif inputType.upper() == 'TEXT' and mandatory:
             if not isMustHaveText(data[fieldID]):
+                print 'fieldID: %s TEXT fails' % fieldID
                 return False
         elif inputType.upper() == 'TEXTBOX' and mandatory:
             if not isMustHaveText(data[fieldID]):
+                print 'fieldID: %s TEXTBOX fails' % fieldID
                 return False
     return True
 
@@ -79,13 +83,11 @@ def getFinanceNumericValue(s):
     return float(s)
 
 def getDateValue(s):
-    d.datetime(2015,5,30)
     day, month, year = s.split('/')
-    return datetime.date(year, month, day)
+    return datetime.date(int(year), int(month), int(day))
 
 def getFieldValues(capture_ss, data):
     print 'getFieldValues'
-    print capture_ss
     fieldValues = {}
     for fieldID in capture_ss:
         print fieldID
@@ -99,4 +101,6 @@ def getFieldValues(capture_ss, data):
             fieldValues[fieldID] = data[fieldID]
         elif inputType.upper() == 'TEXTBOX':
             fieldValues[fieldID] = data[fieldID]
+    print 'fieldValues'
+    print fieldValues
     return fieldValues

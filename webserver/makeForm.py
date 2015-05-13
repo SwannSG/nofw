@@ -24,32 +24,14 @@
 #       errorMsg        error message to display if field completed incorrectly
 
 import globalConfig
-import sharedFunctions
-import pickle
-import readTDL
-
-
-
-#MANDATORY = ['MANDATORY', 'OPTIONAL', '*']    
-#FORMAT = ['FINANCE', 'DATE', 'TEXT', 'NUMBER', 'TEXTBOX']
-
-MANDATORY = globalConfig.MANDATORY
-FORMAT = globalConfig.FORMAT
-
-# directory for pickle artifacts
-dirPickle = globalConfig.dirPickle
-
-# directory for form html artifacts
-dirForms = globalConfig.dirForms
-
-
+import globalFunctions
 
 # *******************************************assemble form html artifact*******************************************************
 def assembleForm(tdl):
     s0 = formStart(tdl.formID, getFieldNameList(tdl))
     formGroups = []
     for captureTuple in tdl.capture:
-        captureName, captureDescription, captureMandatory, captureType,captureErrorMsg = sharedFunctions.captureTupleNames(captureTuple)
+        captureName, captureDescription, captureMandatory, captureType,captureErrorMsg = globalFunctions.captureTupleNames(captureTuple)
         formGroups.append(formGroup(captureName, boolMandatory(captureMandatory), captureType, captureDescription, captureErrorMsg)) 
     result = s0
     for each in formGroups:
@@ -181,9 +163,9 @@ def isCaptureTupleValid(t):
     # returns True (isValid) or False
     if len(t) <> 5:
         return False
-    global MANDATORY    
-    global FORMAT
-    captureName, captureDescription, captureMandatory, captureType,captureErrorMsg = sharedFunctions.captureTupleNames(t)
+    MANDATORY = globalConfig.MANDATORY
+    FORMAT = globalConfig.FORMAT
+    captureName, captureDescription, captureMandatory, captureType,captureErrorMsg = globalFunctions.captureTupleNames(t)
     if len(captureName) == 0:
         print 'captureName error'
         return False
@@ -219,29 +201,29 @@ def makeCaptureSS(tdl):
     for captureTuple in captureTuples:
         mandatory = captureTuple[2]
         captureType = captureTuple[3]
-        captureNameID = sharedFunctions.formatInputID(captureTuple[0])
-        if sharedFunctions.boolMandatory(mandatory):
+        captureNameID = globalFunctions.formatInputID(captureTuple[0])
+        if globalFunctions.boolMandatory(mandatory):
             tdl.capture_ss[captureNameID] = (True, captureType)
         else:
             tdl.capture_ss[captureNameID] = (False, captureType)
 # *************************************** end update capture_ss************************************************
 
 # *******************************************create form html artifacts*******************************************************
-fp = open('%s/tdls.pkl' % dirPickle, 'rb')
-tdls = pickle.load(fp)
-for each in tdls:
-    tdl = tdls[each]
-    print tdl.formID
 
-    if isTdlValid(tdl):
-        # valid TDL
-        formHTML = assembleForm(tdl)
-        fp = open('%s/form_%s.html' % (dirForms, tdl.formID), 'w')
-        fp.write(formHTML)
-        fp.close()
-        makeCaptureSS(tdl)
-    else:
-        print 'tdl %s invalid' % (each)
+if __name__ == "__main__":
+    tdls = globalFunctions.loadTDLS()
+    for each in tdls:
+        tdl = tdls[each]
+        if isTdlValid(tdl):
+            # valid TDL
+            formHTML = assembleForm(tdl)
+            fp = open('%s/form_%s.html' % (globalConfig.dirForms, tdl.formID), 'w')
+            fp.write(formHTML)
+            fp.close()
+            makeCaptureSS(tdl)
+        else:
+            print 'tdl %s invalid' % (each)
+    globalFunctions.dumpTDLS(tdls)
 # *******************************************end create form html artifacts**************************************************
 
 
